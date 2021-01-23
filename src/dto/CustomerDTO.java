@@ -1,15 +1,17 @@
-public class Customer {
-    private String id;
-    private String name;
-    private String address;
+package dto;
 
-    public Customer(String id, String name, String address) {
+public class CustomerDTO {
+    public String id;
+    public String name;
+    public String address;
+
+    public CustomerDTO(String id, String name, String address) {
         this.id = id;
         this.name = name;
         this.address = address;
     }
 
-    public Customer() {
+    public CustomerDTO() {
     }
 
     public String getId() {
@@ -38,6 +40,10 @@ public class Customer {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "CustomerDTO{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }
