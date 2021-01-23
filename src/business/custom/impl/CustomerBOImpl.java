@@ -14,6 +14,6 @@ public class CustomerBOImpl implements CustomerBO {
 
     @Override
     public boolean addCustomer(CustomerDTO customer) throws Exception {
-       return dao.add(new Customer(customer.getId(),customer.getName(),customer.getAddress()));
+       return dao.add(new Customer(customer.getId(),customer.getName(),customer.getAddress(),customer.getTel()));
     }
 }

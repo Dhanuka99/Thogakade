@@ -1,14 +1,21 @@
 package entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Customer implements SuperEntity {
+    @Id
     private String id;
     private String name;
     private String address;
+    private String tel;
 
-    public Customer(String id, String name, String address) {
+    public Customer(String id, String name, String address, String tel) {
         this.id = id;
         this.name = name;
         this.address = address;
+        this.tel = tel;
     }
 
     public Customer() {
@@ -38,8 +45,13 @@ public class Customer implements SuperEntity {
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
+    public String getTel() {
+        return tel;
     }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+
 }

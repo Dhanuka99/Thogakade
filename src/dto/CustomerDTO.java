@@ -1,14 +1,24 @@
 package dto;
 
 public class CustomerDTO {
-    public String id;
-    public String name;
-    public String address;
+    private String id;
+    private String name;
+    private String address;
+    private String tel;
 
-    public CustomerDTO(String id, String name, String address) {
+    public CustomerDTO(String id, String name, String address, String tel) {
         this.id = id;
         this.name = name;
         this.address = address;
+        this.tel = tel;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
     public CustomerDTO() {
@@ -44,6 +54,8 @@ public class CustomerDTO {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
+                ", tel='" + tel + '\'' +
                 '}';
     }
+    
 }
