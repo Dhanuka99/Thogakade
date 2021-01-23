@@ -42,7 +42,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="353.0" layoutY="246.0" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #FF3860;" text="Delete" textFill="WHITE">
+      <JFXButton fx:id="btnDelete" layoutX="353.0" layoutY="246.0" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #FF3860;" text="Delete" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -52,5 +52,6 @@
             <Font name="Calibri Bold" size="17.0" />
          </font>
       </Label>
+      <JFXTextField fx:id="txtTestID" labelFloat="true" layoutX="354.0" layoutY="50.0" prefHeight="25.0" prefWidth="144.0" promptText="Enter Customer ID Here" visible="false" />
    </children>
 </AnchorPane>
