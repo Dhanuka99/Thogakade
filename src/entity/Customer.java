@@ -18,7 +18,7 @@ public class Customer implements SuperEntity {
         this.tel = tel;
     }
 
-    public Customer() {
+    public Customer(Object o, Object o1, Object o2, Object o3) {
     }
 
     public String getId() {
@@ -53,5 +53,13 @@ public class Customer implements SuperEntity {
         this.tel = tel;
     }
 
-
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", tel='" + tel + '\'' +
+                '}';
+    }
 }

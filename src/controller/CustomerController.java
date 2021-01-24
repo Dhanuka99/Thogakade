@@ -7,6 +7,7 @@ import business.custom.impl.CustomerBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import dto.CustomerDTO;
+import entity.Customer;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -21,15 +22,19 @@ public class CustomerController {
     public JFXTextField txtTel;
     public JFXTextField txtTestID;
     public JFXButton btnDelete;
+    public JFXTextField txtID;
+    public JFXButton btnClear;
 
     CustomerBOImpl bo = BOFactory.getInstance().getBO(BOTypes.CUSTOMER);
 
     public void initialize(){
+
         lblNextCustomerCount.setText(genarateNewID());
+        txtID.requestFocus();
     }
 
     public void saveOnAction(ActionEvent actionEvent) {
-        String id = lblNextCustomerCount.getText();
+        String id = txtID.getText();
         String name = txtName.getText();
         String address = txtAddress.getText();
         String tel = txtTel.getText();
@@ -38,44 +43,64 @@ public class CustomerController {
         try {
             boolean b = bo.addCustomer(customerDTO);
             if (b){
-                new Alert(Alert.AlertType.CONFIRMATION).show();
+                new Alert(Alert.AlertType.CONFIRMATION,"Data Added Successfully..").show();
+                txtID.clear();
+                txtName.clear();
+                txtAddress.clear();
+                txtTel.clear();
                 lblNextCustomerCount.setText(genarateNewID());
+                txtID.requestFocus();
+            }else{
+                new Alert(Alert.AlertType.ERROR,"Data Added not Successfully..").show();
             }
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR).show();
+
         }
 
 
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
+
     }
 
     public void searchOnAction(ActionEvent actionEvent) {
-        txtTestID.setVisible(true);
-        String customID = txtTestID.getText();
+
+        String id = txtID.getText();
+        try {
+            Customer customer = bo.searchCustomer(id);
+            System.out.println("cONTROLLER :"+ customer.getName());
+            if (customer!=null){
+                txtName.setText(customer.getName());
+                txtAddress.setText(customer.getAddress());
+                txtTel.setText(customer.getTel());
+            }else{
+                new Alert(Alert.AlertType.INFORMATION,"No Customer").show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
-        new Alert(Alert.AlertType.INFORMATION,"Please Enter Customer ID", ButtonType.OK).show();
 
-        txtTestID.setVisible(true);
 
         try {
             txtTestID.requestFocus();
             String customID = txtTestID.getText();
             boolean b = bo.deleteCustomer(customID);
             if (b){
-                new Alert(Alert.AlertType.CONFIRMATION).show();
+                new Alert(Alert.AlertType.CONFIRMATION,"Record Delete Successfully..").show();
                 txtName.clear();
                 txtName.clear();
                 txtAddress.clear();
-                txtName.requestFocus();
+                txtID.requestFocus();
 
 
-            }else{new Alert(Alert.AlertType.ERROR).show();
+            }else{new Alert(Alert.AlertType.ERROR,"Record Delete not Successfully..").show();
 
 
             }
@@ -95,5 +120,16 @@ public class CustomerController {
             e.printStackTrace();
         }return id;
 
+    }
+
+    public void clear(){
+        txtID.clear();
+        txtAddress.clear();
+        txtName.clear();
+        txtTel.clear();
+    }
+
+    public void clearOnAction(ActionEvent actionEvent) {
+        clear();
     }
 }
