@@ -89,6 +89,21 @@ public class CustomerController {
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
+        try {
+          //  String cid = tblCustomer.getSelectionModel().getSelectedItem().getId();
+            boolean isUpdated = bo.updateCustomer(new CustomerDTO(txtID.getId(), txtName.getText(), txtAddress.getText(),txtTel.getText()));
+            if (isUpdated) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Customer updated!", ButtonType.OK).show();
+                getAllCustomer();
+                txtName.clear();
+                txtAddress.clear();
+               // btnUpdate.setDisable(true);
+            } else {
+                new Alert(Alert.AlertType.ERROR, "error", ButtonType.OK).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
