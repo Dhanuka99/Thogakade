@@ -8,10 +8,16 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import dto.CustomerDTO;
 import entity.Customer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 public class CustomerController {
 
@@ -25,12 +31,32 @@ public class CustomerController {
     public JFXTextField txtID;
     public JFXButton btnClear;
 
+
+
+    @FXML
+    private TableView<CustomerDTO> tblCustomer;
+
+    @FXML
+    private TableColumn<CustomerDTO,String> clmID;
+
+    @FXML
+    private TableColumn<CustomerDTO,String> clmName;
+
+    @FXML
+    private TableColumn<CustomerDTO, String> clmAddress;
+
+    @FXML
+    private TableColumn<CustomerDTO,String> clmTel;
+
+
     CustomerBOImpl bo = BOFactory.getInstance().getBO(BOTypes.CUSTOMER);
 
     public void initialize(){
 
         lblNextCustomerCount.setText(genarateNewID());
         txtID.requestFocus();
+        getAllCustomer();
+
     }
 
     public void saveOnAction(ActionEvent actionEvent) {
@@ -50,6 +76,7 @@ public class CustomerController {
                 txtTel.clear();
                 lblNextCustomerCount.setText(genarateNewID());
                 txtID.requestFocus();
+                getAllCustomer();
             }else{
                 new Alert(Alert.AlertType.ERROR,"Data Added not Successfully..").show();
             }
@@ -69,7 +96,7 @@ public class CustomerController {
 
         String id = txtID.getText();
         try {
-            Customer customer = bo.searchCustomer(id);
+            CustomerDTO customer = bo.searchCustomer(id);
             System.out.println("cONTROLLER :"+ customer.getName());
             if (customer!=null){
                 txtName.setText(customer.getName());
@@ -87,27 +114,20 @@ public class CustomerController {
 
     public void deleteOnAction(ActionEvent actionEvent) {
 
-
+        String id = tblCustomer.getSelectionModel().getSelectedItem().getId();
         try {
-            txtTestID.requestFocus();
-            String customID = txtTestID.getText();
-            boolean b = bo.deleteCustomer(customID);
-            if (b){
-                new Alert(Alert.AlertType.CONFIRMATION,"Record Delete Successfully..").show();
-                txtName.clear();
-                txtName.clear();
-                txtAddress.clear();
-                txtID.requestFocus();
-
-
-            }else{new Alert(Alert.AlertType.ERROR,"Record Delete not Successfully..").show();
-
-
+            boolean b = bo.deleteCustomer(id);
+            if (b) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Delete Successfully..").show();
+                getAllCustomer();
+            } else {
+                new Alert(Alert.AlertType.CONFIRMATION, "Delete not Successfully..").show();
             }
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public String genarateNewID(){
@@ -132,4 +152,27 @@ public class CustomerController {
     public void clearOnAction(ActionEvent actionEvent) {
         clear();
     }
+
+    private void setTblCustomerCellValue() {
+        clmID.setCellValueFactory(new PropertyValueFactory<CustomerDTO, String>("id"));
+        clmName.setCellValueFactory(new PropertyValueFactory<CustomerDTO, String>("name"));
+        clmAddress.setCellValueFactory(new PropertyValueFactory<CustomerDTO, String>("address"));
+        clmTel.setCellValueFactory(new PropertyValueFactory<CustomerDTO, String>("tel"));
+    }
+        public void getAllCustomer () {
+
+            try {
+                List<CustomerDTO> customer = bo.getAll();
+                ObservableList<CustomerDTO> list = FXCollections.observableArrayList();
+                list.addAll(customer);
+                tblCustomer.setItems(list);
+                setTblCustomerCellValue();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+
 }

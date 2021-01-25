@@ -7,6 +7,9 @@ import dao.custom.impl.CustomerDAOImpl;
 import dto.CustomerDTO;
 import entity.Customer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CustomerBOImpl implements CustomerBO {
 
     CustomerDAOImpl dao = DAOFactory.getInstance().getDAO(DAOTypes.CUSTOMER);
@@ -27,12 +30,12 @@ public class CustomerBOImpl implements CustomerBO {
     }
 
     @Override
-    public Customer searchCustomer(String id) throws Exception {
+    public CustomerDTO searchCustomer(String id) throws Exception {
         Customer search = dao.search(id);
         System.out.println("search customer boimpl layer"+search.getName());
 
         System.out.println("bo" + search.getName());
-        return search;
+        return new CustomerDTO(search.getId(),search.getName(),search.getAddress(),search.getTel());
     }
 
     @Override
@@ -48,6 +51,17 @@ public class CustomerBOImpl implements CustomerBO {
         }else{
             return "C"+newID;
         }
+
+    }
+
+    @Override
+    public List<CustomerDTO> getAll() throws Exception {
+        List<Customer> all = dao.getAll();
+        List<CustomerDTO> customer = new ArrayList<>();
+        for (Customer customer1 : all) {
+            customer.add(new CustomerDTO(customer1.getId(),customer1.getName(),customer1.getAddress(),customer1.getTel()));
+        }
+        return customer;
 
     }
 }

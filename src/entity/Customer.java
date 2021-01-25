@@ -18,7 +18,7 @@ public class Customer implements SuperEntity {
         this.tel = tel;
     }
 
-    public Customer(Object o, Object o1, Object o2, Object o3) {
+    public Customer() {
     }
 
     public String getId() {

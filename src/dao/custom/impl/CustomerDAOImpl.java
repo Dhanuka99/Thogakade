@@ -55,29 +55,25 @@ public class CustomerDAOImpl implements CustomerDAO {
 
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-//        NativeQuery sqlQuery = session.createSQLQuery("select * from Customer where id=?");
-//        List list = sqlQuery.list();
-//
-        Query sqlQuery = session.createSQLQuery("select * from Customer where id= ?1");
-        sqlQuery.setParameter(1, getID());
-        List<Object[]> list = sqlQuery.list();
-        Customer customer1 = null;
-        for (Object[] customer : list) {
-             customer1 = new Customer(customer[0],customer[1],customer[2],customer[3]);
-            System.out.println(customer[0]+" "+customer[1]+" "+customer[2]+" "+customer[3]);
-
-        }
+        Query query = session.createQuery("FROM Customer WHERE id = ?1");
+        query.setParameter(1,getID());
+        Customer o = (Customer) query.uniqueResult();
 
         transaction.commit();
         session.close();
-        System.out.println("Search object DAO"+customer1);
-        return  customer1;
+        return o;
 
     }
 
     @Override
     public List<Customer> getAll() throws Exception {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery("From Customer");
+        List<Customer> list = query.list();
+        transaction.commit();
+        session.close();
+        return list;
     }
 
     @Override
