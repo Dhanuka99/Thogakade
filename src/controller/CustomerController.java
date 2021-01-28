@@ -32,7 +32,6 @@ public class CustomerController {
     public JFXButton btnClear;
 
 
-
     @FXML
     private TableView<CustomerDTO> tblCustomer;
 
@@ -89,17 +88,22 @@ public class CustomerController {
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
+        String id = txtID.getText();
+        String name = txtName.getText();
+        String address = txtAddress.getText();
+        String tel = txtTel.getText();
+
+        CustomerDTO customerDTO = new CustomerDTO(id,name,address,tel);
         try {
-          //  String cid = tblCustomer.getSelectionModel().getSelectedItem().getId();
-            boolean isUpdated = bo.updateCustomer(new CustomerDTO(txtID.getId(), txtName.getText(), txtAddress.getText(),txtTel.getText()));
-            if (isUpdated) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Customer updated!", ButtonType.OK).show();
+            boolean b = bo.updateCustomer(customerDTO);
+            if (b){
+                new Alert(Alert.AlertType.CONFIRMATION,"Data Updated..",ButtonType.OK).show();
                 getAllCustomer();
-                txtName.clear();
-                txtAddress.clear();
-               // btnUpdate.setDisable(true);
-            } else {
-                new Alert(Alert.AlertType.ERROR, "error", ButtonType.OK).show();
+                clear();
+            }else{
+                new Alert(Alert.AlertType.CONFIRMATION,"Data not Updated..",ButtonType.OK).show();
+                getAllCustomer();
+                clear();
             }
         } catch (Exception e) {
             e.printStackTrace();

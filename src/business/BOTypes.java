@@ -1,5 +1,5 @@
 package business;
 
 public enum BOTypes {
-    CUSTOMER
+    CUSTOMER,ITEM
 }
