@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="408.0" prefWidth="727.0" style="-fx-background-color: #D2D2D2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainFormController">
+   <children>
+      <Pane mouseTransparent="true" prefHeight="38.0" prefWidth="727.0" style="-fx-background-color: #192429;">
+         <children>
+            <Label layoutX="306.0" layoutY="4.0" prefHeight="30.0" prefWidth="188.0" text="Jayasinghe Super Market" textFill="#c3c3c3">
+               <font>
+                  <Font name="Calibri Bold" size="17.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imgClose" fitHeight="25.0" fitWidth="27.0" layoutX="696.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../asserts/icons8-macos-close-20.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </Pane>
+      <JFXTextField fx:id="txtTestID" labelFloat="true" layoutX="354.0" layoutY="50.0" prefHeight="25.0" prefWidth="144.0" promptText="Enter Customer ID Here" visible="false" />
+      <Pane layoutY="38.0" prefHeight="372.0" prefWidth="154.0" style="-fx-background-color: #192429;">
+         <children>
+            <Pane layoutX="4.0" layoutY="2.0" onMouseClicked="#btnCustomerOnMouseClicked" prefHeight="62.0" prefWidth="144.0" style="-fx-background-color: #1B2F33;">
+               <children>
+                  <Label layoutX="35.0" layoutY="8.0" prefHeight="30.0" prefWidth="79.0" text="Customer " textFill="#c3c3c3">
+                     <font>
+                        <Font name="Calibri Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="27.0" layoutY="25.0" prefHeight="30.0" prefWidth="93.0" text="Registration" textFill="#c3c3c3">
+                     <font>
+                        <Font name="Calibri Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane layoutX="5.0" layoutY="84.0" onMouseClicked="#btnStockOnMouseClicked" prefHeight="62.0" prefWidth="144.0" style="-fx-background-color: #1B2F33;">
+               <children>
+                  <Label layoutX="51.0" layoutY="8.0" prefHeight="30.0" prefWidth="79.0" text="Stock" textFill="#c3c3c3">
+                     <font>
+                        <Font name="Calibri Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="38.0" layoutY="25.0" prefHeight="30.0" prefWidth="93.0" text="Maintain" textFill="#c3c3c3">
+                     <font>
+                        <Font name="Calibri Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane layoutX="4.0" layoutY="163.0" onMouseClicked="#btnPurchesOnMouseClicked" prefHeight="62.0" prefWidth="144.0" style="-fx-background-color: #1B2F33;">
+               <children>
+                  <Label layoutX="36.0" layoutY="15.0" prefHeight="30.0" prefWidth="79.0" text="Purcheses" textFill="#c3c3c3">
+                     <font>
+                        <Font name="Calibri Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane layoutX="349.0" layoutY="63.0" prefHeight="73.0" prefWidth="176.0" style="-fx-background-color: #F65994;">
+         <children>
+            <Label layoutX="34.0" layoutY="9.0" prefHeight="30.0" prefWidth="52.0" text="Items" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="41.0" layoutY="31.0" prefHeight="30.0" prefWidth="45.0" text="10" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="37.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="62.0" fitWidth="83.0" layoutX="100.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../asserts/icons8-shopping-cart-50.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="164.0" layoutY="63.0" prefHeight="73.0" prefWidth="176.0" style="-fx-background-color: #4D91E4;">
+         <children>
+            <Label layoutX="9.0" layoutY="9.0" prefHeight="30.0" prefWidth="102.0" text="Customers" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="39.0" layoutY="31.0" prefHeight="30.0" prefWidth="45.0" text="05" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="37.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="62.0" fitWidth="83.0" layoutX="100.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../asserts/icons8-customer-50.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="537.0" layoutY="63.0" prefHeight="73.0" prefWidth="176.0" style="-fx-background-color: #3BB5B2;">
+         <children>
+            <Label layoutX="34.0" layoutY="9.0" prefHeight="30.0" prefWidth="133.0" text="Today Income" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="26.0" layoutY="31.0" prefHeight="44.0" prefWidth="144.0" text="12500.00" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="37.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="349.0" layoutY="151.0" prefHeight="73.0" prefWidth="176.0" style="-fx-background-color: #FF8D54;">
+         <children>
+            <Label layoutX="34.0" layoutY="9.0" prefHeight="30.0" prefWidth="113.0" text="Today Deals" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="69.0" layoutY="31.0" prefHeight="30.0" prefWidth="45.0" text="25" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="37.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

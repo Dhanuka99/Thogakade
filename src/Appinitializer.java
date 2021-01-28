@@ -11,7 +11,7 @@ public class Appinitializer extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        primaryStage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("view/CustomerForm.fxml"))));
+        primaryStage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("view/MainForm.fxml"))));
 primaryStage.show();
 
     }
