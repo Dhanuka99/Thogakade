@@ -1,7 +1,10 @@
 package entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Customer implements SuperEntity {
@@ -10,7 +13,8 @@ public class Customer implements SuperEntity {
     private String name;
     private String address;
     private String tel;
-
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Orders> ordersList;
     public Customer(String id, String name, String address, String tel) {
         this.id = id;
         this.name = name;
