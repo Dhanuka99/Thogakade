@@ -1,3 +1,3 @@
 # Thogakade
 Using JavaFX - Hibernate - XML
-[![Inline docs](http://inch-ci.org/github/{Dhanuka99}/{Thogakade}.svg?branch=master)](http://inch-ci.org/github/{Dhanuka99}/{Thogakade})
+[![Build Status](https://travis-ci.org/{Dhanuka99}/{Thogakade}.png?branch=master)](https://travis-ci.org/{Dhanuka99}/{Thogakade})
